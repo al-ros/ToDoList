@@ -1,3 +1,4 @@
+import './App.scss'
 import Header from './components/Header'
 import Task from './components/Task'
 import InputTarget from './components/InputTarget'
