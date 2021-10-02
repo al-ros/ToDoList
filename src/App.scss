@@ -35,3 +35,29 @@ body {
     font-weight: 500;
     // font-family: Montserrat;
 }
+
+.App {
+    max-width: 1046px;
+    padding: 0 15px;
+    box-sizing: content-box; /* ili pribavit' po 15px k max-width*/
+    margin: 0px auto;
+    &__header {
+        position: fixed;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: 50;
+    }
+
+    &__main {
+        position: static;
+    }
+
+    &__footer {
+        position: fixed;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        z-index: 50;
+    }
+}

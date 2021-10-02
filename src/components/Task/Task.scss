@@ -1,0 +1,15 @@
+.action {
+    margin-top: 120px;
+    &__list {
+        position: relative;
+        list-style: none;
+    }
+    &__item {
+        margin-right: 20px;
+        display: inline;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

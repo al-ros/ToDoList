@@ -3,7 +3,9 @@ import "./Header.scss";
 const Header = () => {
 
     return(
-        <h1>TO DO LIST</h1>
+        <div className="header__box box">
+            <h1 className="box__text">TO DO LIST</h1>
+        </div>
     )
 }
 
