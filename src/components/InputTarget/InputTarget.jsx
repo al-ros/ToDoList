@@ -1,6 +1,7 @@
 import "./InputTarget.scss"
 
 const InputTarget = ({value, onChange, onSubmit}) => {
+    
     const handleFormSubmit = (e) => {
         e.preventDefault();
         onSubmit()
@@ -9,6 +10,7 @@ const InputTarget = ({value, onChange, onSubmit}) => {
     const handleInputTargetChange = (event) => {
         onChange(event.currentTarget.value)
     }
+
 
     return(
         
