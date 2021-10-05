@@ -12,13 +12,20 @@ function App() {
   const handleInputTargetSubmit = () => {
       setTasks([...tasks, {
           task: inputTargetValue,
-          id: new Date().getTime()
+          id: new Date().getTime(),
+          completed: false
       }])
       setInputTargetValue('')
   }
 
-  const taskDone = () => {
-    console.log(tasks)
+  const taskDone = (id) => {
+    const updatedTasks = [...tasks].map((inputTargetValue) => {
+      if (inputTargetValue.id === id) {
+        inputTargetValue.completed = !inputTargetValue.completed
+      } 
+      return inputTargetValue
+    })
+    setTasks(updatedTasks)
   }
   
   const editTask = () => {
@@ -40,7 +47,7 @@ function App() {
       </header>
 
       <main className="App__main">
-        {tasks.map(({task, id}) => <Task key={id} task={task} id={id} taskDone={taskDone} editTask={editTask} deleteTask={deleteTask}/>)}
+        {tasks.map(({task, id, completed}) => <Task key={id} task={task} id={id} completed={completed} taskDone={taskDone} editTask={editTask} deleteTask={deleteTask}/>)}
       </main>
 
       <footer className="App__footer">
