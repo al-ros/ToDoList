@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import Header from './components/Header'
 import Task from './components/Task'
@@ -19,6 +19,8 @@ function App() {
   }
 
   const taskDone = (id) => {
+    const index = tasks.findIndex(x => x.id === id);
+    tasks.push(tasks.splice(index, 1)[0]);
     const updatedTasks = [...tasks].map((inputTargetValue) => {
       if (inputTargetValue.id === id) {
         inputTargetValue.completed = !inputTargetValue.completed
@@ -28,14 +30,14 @@ function App() {
     setTasks(updatedTasks)
   }
   
-  const editTask = () => {
-    console.log('EDIT')
+  const editTask = (id) => {
+ 
   }
 
   const deleteTask = (id) => {
     const updatedTasks = [...tasks].filter((inputTargetValue) => inputTargetValue.id !== id )
     setTasks(updatedTasks)
-    // console.log(id)
+    // console.log(updatedTasks)
   }
   
   

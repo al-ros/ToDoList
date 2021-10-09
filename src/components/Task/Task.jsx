@@ -3,13 +3,18 @@ import "./Task.scss"
 
 const Task = ({ task, id, taskDone, completed, editTask, deleteTask }) => {
  
+    const thisTaskDone = () => {
+        taskDone(id)
+    }
+
+    const editedTask = () => {
+        editTask(id)
+    }
+
     const delTask = () => {
         deleteTask(id)
     }
 
-    const thisTaskDone = () => {
-        taskDone(id)
-    }
 
     return (
         <div className="task">
@@ -21,7 +26,7 @@ const Task = ({ task, id, taskDone, completed, editTask, deleteTask }) => {
                     <div className="task__actions action">
                         <ul className="action__list">
                             <li onClick={thisTaskDone} className="action__item">Done</li>
-                            <li onClick={editTask} className="action__item">Edit</li>
+                            <li onClick={editedTask} className="action__item">Edit</li>
                             <li onClick={delTask} className="action__item">Delete</li>
                         </ul>
                     </div>
