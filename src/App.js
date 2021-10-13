@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 import Header from './components/Header'
 import Task from './components/Task'
@@ -33,10 +33,10 @@ function App() {
     setTasks(updatedTasks)
   }
   
-  const editTask = (id) => {
+  const submitEdit = (id) => {
     const updatedTasks = [...tasks].map((currentTask) => {
       if (currentTask.id === id) {
-        currentTask.text = editingText
+        currentTask.task = editingText
     }
       return currentTask
     })
@@ -60,10 +60,8 @@ function App() {
       </header>
 
       <main className="App__main">
-        {tasks.map(({task, id, completed}) => <Task key={id} task={task} id={id} completed={completed} taskDone={taskDone} editTask={editTask} deleteTask={deleteTask}/>)}
+        {tasks.map(({task, id, completed}) => <Task key={id} task={task} id={id} completed={completed} taskDone={taskDone} submitEdit={submitEdit} deleteTask={deleteTask } taskEditing={taskEditing} setTaskEditing={setTaskEditing} editingText={editingText} setEditingText={setEditingText}/>)}
       </main>
-
-      <h1>{console.log(tasks)}</h1>
 
       <footer className="App__footer">
       <InputTarget onChange={setInputTargetValue} onSubmit={handleInputTargetSubmit} value={inputTargetValue} />
