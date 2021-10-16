@@ -1,23 +1,24 @@
 import "./Task.scss"
+import { useState } from 'react'
+
+const Task = ({ task, id, onDone, completed, onEdit, onDelete}) => {
+    
+    const [taskEditing, setTaskEditing] = useState(false)
+    const [editingText, setEditingText] = useState(task)
 
 
-const Task = ({ task, id, taskDone, completed, submitEdit, deleteTask, taskEditing, setTaskEditing, editingText, setEditingText}) => {
- 
-    const thisTaskDone = () => {
-        taskDone(id)
-    }
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        onEdit(id, editingText)
+        setTaskEditing(false)
+    };
+
 
     const editedTask = () => {
-        setTaskEditing(id)
+        setTaskEditing(true)
     }
 
-    const submitEdited = () => {
-        submitEdit(id)
-    }
 
-    const delTask = () => {
-        deleteTask(id)
-    }
 
 
 
@@ -25,12 +26,14 @@ const Task = ({ task, id, taskDone, completed, submitEdit, deleteTask, taskEditi
         <div className="task">
             <div className="task__inner">
                 <div className="task__block">
-                    {taskEditing === id ? 
+                    {taskEditing ? 
                     (
-                      <div>
-                        <input type="text" onChange={(e) => setEditingText(e.target.value)} value={editingText}/>
-                        <button onClick={submitEdited} className="action__item">Submit Edit</button>
-                      </div>
+                      <label for="labeled">
+                        <form onSubmit={handleFormSubmit}>  
+                            <input id="labeled" type="text" onChange={(e) => setEditingText(e.target.value)} value={editingText}/>
+                            <button className="action__item" disabled={!editingText.trim()}>Submit Edit</button>
+                        </form>
+                      </label>
                     ) : (
                       <span className={completed ? "task__text strike" : "task__text"}>{task}</span>
                     )}
@@ -39,9 +42,9 @@ const Task = ({ task, id, taskDone, completed, submitEdit, deleteTask, taskEditi
                 <div className="task__children">
                     <div className="task__actions action">
                         <ul className="action__list">
-                            <li onClick={thisTaskDone} className="action__item">Done</li>
+                            <li onClick={() => onDone(id)} className="action__item">Done</li>
                             <li onClick={editedTask} className="action__item">Edit</li>
-                            <li onClick={delTask} className="action__item">Delete</li>
+                            <li onClick={() => onDelete(id)} className="action__item">Delete</li>
                         </ul>
                     </div>
                 </div>

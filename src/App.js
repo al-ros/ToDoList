@@ -8,8 +8,7 @@ function App() {
   
   const [tasks, setTasks] = useState([])
   const [inputTargetValue, setInputTargetValue] = useState('')
-  const [taskEditing, setTaskEditing] = useState(null)
-  const [editingText, setEditingText] = useState('')
+
 
   const handleInputTargetSubmit = () => {
       setTasks([...tasks, 
@@ -22,36 +21,39 @@ function App() {
   }
 
   const taskDone = (id) => {
-  const index = tasks.findIndex(x => x.id === id);
-    tasks.push(tasks.splice(index, 1)[0]);
-    const updatedTasks = [...tasks].map((currentTask) => {
+  // const index = tasks.findIndex(x => x.id === id);
+  //   tasks.push(tasks.splice(index, 1)[0]);
+    const updatedTasks = tasks.map((currentTask) => {
       if (currentTask.id === id) {
-        currentTask.completed = !currentTask.completed
+        return {...currentTask, completed: !currentTask.completed}
     }
       return currentTask
     })
     setTasks(updatedTasks)
   }
   
-  const submitEdit = (id) => {
-    const updatedTasks = [...tasks].map((currentTask) => {
+  const editTask = (id, value) => {
+    const updatedTasks = tasks.map((currentTask) => {
       if (currentTask.id === id) {
-        currentTask.task = editingText
-    }
+        return {...currentTask, task: value}
+      }
       return currentTask
     })
     setTasks(updatedTasks)
-    setTaskEditing(null)
-    setEditingText('')
   }
 
   const deleteTask = (id) => {
-    const updatedTasks = [...tasks].filter((currentTask) => currentTask.id !== id )
+    const updatedTasks = tasks.filter((currentTask) => currentTask.id !== id )
     setTasks(updatedTasks)
-    // console.log(updatedTasks)
   }
   
-  
+  const sortedTasks = [...tasks].sort(({completed}) => completed ? 1 : -1)
+
+  // const sortedTasks = [ 
+  //   ...tasks.filter(({completed}) => !completed), 
+  //   ...tasks.filter(({completed}) => completed)
+  // ]
+
   return (
     <div className="App">
 
@@ -60,7 +62,16 @@ function App() {
       </header>
 
       <main className="App__main">
-        {tasks.map(({task, id, completed}) => <Task key={id} task={task} id={id} completed={completed} taskDone={taskDone} submitEdit={submitEdit} deleteTask={deleteTask } taskEditing={taskEditing} setTaskEditing={setTaskEditing} editingText={editingText} setEditingText={setEditingText}/>)}
+        {sortedTasks.map(({task, id, completed}) => 
+        <Task 
+          key={id} 
+          task={task} 
+          id={id} 
+          completed={completed} 
+          onDone={taskDone}
+          onDelete={deleteTask} 
+          onEdit={editTask}
+        />)}
       </main>
 
       <footer className="App__footer">
