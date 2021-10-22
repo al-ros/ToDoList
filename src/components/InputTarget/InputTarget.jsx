@@ -1,16 +1,22 @@
+import { useState, useContext } from 'react';
+import TaskContext from '../../contexts/TaskContext';
 import "./InputTarget.scss"
 
-const InputTarget = ({value, onChange, onSubmit}) => {
-    
+const InputTarget = () => {
+    const [value, setValue] = useState('');
+    const { addTask } = useContext(TaskContext);
+
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        onSubmit()
+        setValue('');
+        addTask(value);
     };
 
     const handleInputTargetChange = (event) => {
-        onChange(event.currentTarget.value)
+        setValue(event.currentTarget.value)
     }
 
+    console.log('render: InputTarget');
 
     return(
         

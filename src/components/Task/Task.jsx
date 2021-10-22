@@ -1,26 +1,21 @@
 import "./Task.scss"
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import TaskContext from '../../contexts/TaskContext'
 
-const Task = ({ task, id, onDone, completed, onEdit, onDelete}) => {
-    
+const Task = ({ task, id, completed }) => {
     const [taskEditing, setTaskEditing] = useState(false)
     const [editingText, setEditingText] = useState(task)
-
+    const { taskDone, editTask, deleteTask } = useContext(TaskContext);
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        onEdit(id, editingText)
+        editTask(id, editingText)
         setTaskEditing(false)
     };
-
 
     const editedTask = () => {
         setTaskEditing(true)
     }
-
-
-
-
 
     return (
         <div className="task">
@@ -42,9 +37,11 @@ const Task = ({ task, id, onDone, completed, onEdit, onDelete}) => {
                 <div className="task__children">
                     <div className="task__actions action">
                         <ul className="action__list">
-                            <li onClick={() => onDone(id)} className="action__item">Done</li>
+                            <li onClick={() => taskDone(id)} className="action__item">
+                                {completed ? 'Undone' : 'Done'}
+                            </li>
                             <li onClick={editedTask} className="action__item">Edit</li>
-                            <li onClick={() => onDelete(id)} className="action__item">Delete</li>
+                            <li onClick={() => deleteTask(id)} className="action__item">Delete</li>
                         </ul>
                     </div>
                 </div>
