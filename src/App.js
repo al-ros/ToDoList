@@ -44,20 +44,10 @@ const App = () => {
 
   const removeAllDone = () => setTasks(tasks.filter(({completed}) => !completed));
 
+  const allDone = () => setTasks(tasks.map((currentTask) => {return {...currentTask, completed: true}}));
 
-  const allDone = () => { 
-    const updatedComleted = tasks.map((currentTask) => {
-      return {...currentTask, completed: true}
-    });
-    setTasks(updatedComleted)
-  }
-  
-  const allUndone = () => { 
-    const updatedComleted = tasks.map((currentTask) => {
-      return {...currentTask, completed: false}
-    });
-    setTasks(updatedComleted)
-  }
+  const allUndone = () => setTasks(tasks.map((currentTask) => {return {...currentTask, completed: false}}));
+
 
   console.log('render: App');
 
