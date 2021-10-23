@@ -6,7 +6,9 @@ const TaskContext = createContext({
   taskDone: () => null,
   editTask: () => null,
   deleteTask: () => null,
-  removeAllDone: () => null
+  removeAllDone: () => null,
+  allDone: () => null,
+  allUndone: () => null
 })
 
 export default TaskContext;

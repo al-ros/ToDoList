@@ -44,11 +44,26 @@ const App = () => {
 
   const removeAllDone = () => setTasks(tasks.filter(({completed}) => !completed));
 
+
+  const allDone = () => { 
+    const updatedComleted = tasks.map((currentTask) => {
+      return {...currentTask, completed: true}
+    });
+    setTasks(updatedComleted)
+  }
+  
+  const allUndone = () => { 
+    const updatedComleted = tasks.map((currentTask) => {
+      return {...currentTask, completed: false}
+    });
+    setTasks(updatedComleted)
+  }
+
   console.log('render: App');
 
   return (
     <div className="App">
-      <TaskContext.Provider value={{ tasks, addTask, taskDone, editTask, deleteTask, removeAllDone }}>
+      <TaskContext.Provider value={{ tasks, addTask, taskDone, editTask, deleteTask, removeAllDone, allDone, allUndone }}>
         <header className="App__header"><Header/></header>
         <main className="App__main">
           <TaskList />
