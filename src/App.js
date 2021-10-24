@@ -17,36 +17,57 @@ const App = () => {
       }])
   }
 
-  const taskDone = (id) => {
-    const updatedTasks = tasks.map((currentTask) => {
-      if (currentTask.id === id) {
-        return {...currentTask, completed: !currentTask.completed}
-    }
-      return currentTask
-    })
-    setTasks(updatedTasks)
-  }
+  // const taskDone = (id) => {
+  //   const updatedTasks = tasks.map((currentTask) => {
+  //     if (currentTask.id === id) {
+  //       return {...currentTask, completed: !currentTask.completed}
+  //   }
+  //     return currentTask
+  //   })
+  //   setTasks(updatedTasks)
+  // }
   
-  const editTask = (id, value) => {
-    const updatedTasks = tasks.map((currentTask) => {
-      if (currentTask.id === id) {
-        return {...currentTask, task: value}
-      }
-      return currentTask
-    })
-    setTasks(updatedTasks)
-  }
+  const taskDone = (id) => setTasks(tasks.map((currentTask) => {
+    if (currentTask.id === id) {
+      return {...currentTask, completed: !currentTask.completed}
+    }
+    return currentTask
+  }))
 
-  const deleteTask = (id) => {
-    const updatedTasks = tasks.filter((currentTask) => currentTask.id !== id )
-    setTasks(updatedTasks)
-  }
+  // const editTask = (id, value) => {
+  //   const updatedTasks = tasks.map((currentTask) => {
+  //     if (currentTask.id === id) {
+  //       return {...currentTask, task: value}
+  //     }
+  //     return currentTask
+  //   })
+  //   setTasks(updatedTasks)
+  // }
+
+  const editTask = (id, value) => setTasks(tasks.map((currentTask) => {
+    if (currentTask.id === id) {
+      return {...currentTask, task: value}
+    }
+    return currentTask
+  }))
+
+  // const deleteTask = (id) => {
+  //   const updatedTasks = tasks.filter((currentTask) => currentTask.id !== id )
+  //   setTasks(updatedTasks)
+  // }
+
+  const deleteTask = (id) => setTasks(tasks.filter((currentTask) => currentTask.id !== id))
+
 
   const removeAllDone = () => setTasks(tasks.filter(({completed}) => !completed));
 
-  const allDone = () => setTasks(tasks.map((currentTask) => {return {...currentTask, completed: true}}));
+  const allDone = () => setTasks(tasks.map((currentTask) => {
+    return {...currentTask, completed: true}
+  }));
 
-  const allUndone = () => setTasks(tasks.map((currentTask) => {return {...currentTask, completed: false}}));
+  const allUndone = () => setTasks(tasks.map((currentTask) => {
+    return {...currentTask, completed: false}
+  }));
 
 
   console.log('render: App');
