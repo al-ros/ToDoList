@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import TaskContext from './contexts/TaskContext'
 import Header from './components/Header'
@@ -7,6 +7,20 @@ import InputTarget from './components/InputTarget'
 
 const App = () => {
   const [tasks, setTasks] = useState([])
+
+  useEffect(() => {
+    const temp = localStorage.getItem("todos")
+    const loadedTodos = JSON.parse(temp)
+
+    if (loadedTodos) {
+      setTasks(loadedTodos)
+    }
+  }, [])
+
+  useEffect(() => {
+    const temp = JSON.stringify(tasks)
+    localStorage.setItem("todos", temp)
+  }, [tasks])
 
   const addTask = (value) => {
       setTasks([...tasks, 
