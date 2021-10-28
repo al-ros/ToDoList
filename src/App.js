@@ -6,19 +6,24 @@ import TaskList from './components/TaskList'
 import InputTarget from './components/InputTarget'
 
 const App = () => {
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState(() => {
+    const temp = localStorage.getItem("todos");
+    return temp ? JSON.parse(temp) : [];
+  })
 
-  useEffect(() => {
-    const temp = localStorage.getItem("todos")
-    const loadedTodos = JSON.parse(temp)
+  // useEffect(() => {
+  //   const temp = localStorage.getItem("todos")
+  //   const loadedTodos = JSON.parse(temp)
 
-    if (loadedTodos) {
-      setTasks(loadedTodos)
-    }
-  }, [])
+  //   console.log('1', temp)
+  //   if (loadedTodos) {
+  //     setTasks(loadedTodos)
+  //   }
+  // }, [])
 
   useEffect(() => {
     const temp = JSON.stringify(tasks)
+    console.log('2', temp);
     localStorage.setItem("todos", temp)
   }, [tasks])
 
@@ -75,9 +80,7 @@ const App = () => {
 
   const removeAllDone = () => setTasks(tasks.filter(({completed}) => !completed));
 
-  const allDone = () => setTasks(tasks.map((currentTask) => {
-    return {...currentTask, completed: true}
-  }));
+  const allDone = () => setTasks(tasks.map((currentTask) => ({...currentTask, completed: true}) ));
 
   const allUndone = () => setTasks(tasks.map((currentTask) => {
     return {...currentTask, completed: false}
