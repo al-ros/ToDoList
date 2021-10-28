@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+
+.App__container {
+  display: flex;
+  flex-direction: column;
+  max-width: 75%;
+  height: 95vh;
+  max-height: 95vh;
+  overflow-y: auto;
+  border: 2px solid red;
+  margin-left: auto;
+  margin-right: auto;
+}

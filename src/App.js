@@ -88,15 +88,17 @@ const App = () => {
 
   return (
     <div className="App">
-      <TaskContext.Provider value={{ tasks, addTask, taskDone, editTask, deleteTask, removeAllDone, allDone, allUndone }}>
-        <header className="App__header"><Header/></header>
-        <main className="App__main">
-          <TaskList />
-        </main>
-        <footer className="App__footer">
-        <InputTarget />
-        </footer>
-      </TaskContext.Provider>
+      <div className="App__container"> 
+        <TaskContext.Provider value={{ tasks, addTask, taskDone, editTask, deleteTask, removeAllDone, allDone, allUndone }}>
+          <header className="App__header"><Header/></header>
+          <main className="App__main">
+            <TaskList />
+          </main>
+          <footer className="App__footer">
+          <InputTarget />
+          </footer>
+        </TaskContext.Provider>
+      </div>
     </div>
   );
 }
