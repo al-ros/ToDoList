@@ -1,19 +1,37 @@
-import { useContext } from 'react';
 import "./Header.scss";
-import TaskContext from '../../contexts/TaskContext'
+import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import App from '../../App'
+import Stat from '../Stat'
+import Admin from '../Admin'
 
 const Header = () => {
-    const { tasks, removeAllDone, allDone, allUndone } = useContext(TaskContext);
-    const countDone = tasks.filter(({completed}) => completed).length;
     return(
         <div className="header__box box">
             <h1 className="box__text">TO DO LIST</h1>
-            <h3>Done: {countDone}</h3>
-            <div>
-                <button onClick={removeAllDone}>Remove all done</button>
-                <button onClick={allDone}>All done</button>
-                <button onClick={allUndone}>All Undone</button>
-            </div>
+            <Router>
+                <ul>
+                    <li>
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                        <Link to="/Stat">Stat</Link>
+                    </li>
+                    <li>
+                        <Link to="/Admin">Admin</Link>
+                    </li>
+                </ul>
+                <Switch>
+                    <Route path="/">
+                        <App />
+                    </Route>
+                    <Route path="/Stat">
+                        <Stat />
+                    </Route>
+                    <Route path="/Admin">
+                        <Admin />
+                    </Route>
+                </Switch>
+            </Router>
         </div>
     )
 }
