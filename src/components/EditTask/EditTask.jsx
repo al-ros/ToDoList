@@ -11,7 +11,7 @@ const EditTask = ({task, onSubmit}) => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     onSubmit(editingText)
-};
+  };
 
   return (<form onSubmit={handleFormSubmit}>
     <input type="text" ref={inputEl} onChange={(e) => setEditingText(e.target.value)} value={editingText}/>
