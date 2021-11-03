@@ -1,12 +1,19 @@
 import "./Task.scss"
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect, useRef } from 'react'
 import TaskContext from '../../contexts/TaskContext'
 
 const Task = ({ task, id, completed }) => {
     const [taskEditing, setTaskEditing] = useState(false)
     const [editingText, setEditingText] = useState(task)
     const { taskDone, editTask, deleteTask } = useContext(TaskContext);
+    const inputEl = useRef(null);
 
+    useEffect(() => {
+        if (taskEditing) {
+            inputEl.current.focus();
+        }
+    }, [taskEditing])
+    
     const handleFormSubmit = (e) => {
         e.preventDefault();
         editTask(id, editingText)
@@ -24,7 +31,7 @@ const Task = ({ task, id, completed }) => {
                     {taskEditing ? 
                     (
                         <form onSubmit={handleFormSubmit}>
-                            <input id="labeled" type="text" onChange={(e) => setEditingText(e.target.value)} value={editingText}/>
+                            <input id="labeled" type="text" ref={inputEl} onChange={(e) => setEditingText(e.target.value)} value={editingText}/>
                             <button className="action__item--edit" disabled={!editingText.trim()}>Submit Edit</button>
                         </form>
                     ) : (
