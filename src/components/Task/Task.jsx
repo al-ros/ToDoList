@@ -26,7 +26,7 @@ const Task = ({ task, id, completed }) => {
                       <label htmlFor="labeled">
                         <form onSubmit={handleFormSubmit}>  
                             <input id="labeled" type="text" onChange={(e) => setEditingText(e.target.value)} value={editingText}/>
-                            <button className="action__item" disabled={!editingText.trim()}>Submit Edit</button>
+                            <button className="action__item--edit" disabled={!editingText.trim()}>Submit Edit</button>
                         </form>
                       </label>
                     ) : (

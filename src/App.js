@@ -4,6 +4,7 @@ import TaskContext from './contexts/TaskContext'
 import Header from './components/Header'
 import TaskList from './components/TaskList'
 import InputTarget from './components/InputTarget'
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const App = () => {
   const [tasks, setTasks] = useState(() => {
@@ -93,7 +94,9 @@ const App = () => {
     <div className="App">
       <div className="App__container"> 
         <TaskContext.Provider value={{ tasks, addTask, taskDone, editTask, deleteTask, removeAllDone, allDone, allUndone }}>
-          <header className="App__header"><Header/></header>
+          <Router>
+            <header className="App__header"><Header/></header>
+          </Router>
           <main className="App__main">
             <TaskList />
           </main>
