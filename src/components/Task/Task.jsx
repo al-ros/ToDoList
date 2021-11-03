@@ -14,7 +14,7 @@ const Task = ({ task, id, completed }) => {
     };
 
     const editedTask = () => {
-        setTaskEditing(true)
+        setTaskEditing(true);
     }
 
     return (
@@ -23,12 +23,10 @@ const Task = ({ task, id, completed }) => {
                 <div className="task__block">
                     {taskEditing ? 
                     (
-                      <label htmlFor="labeled">
-                        <form onSubmit={handleFormSubmit}>  
+                        <form onSubmit={handleFormSubmit}>
                             <input id="labeled" type="text" onChange={(e) => setEditingText(e.target.value)} value={editingText}/>
                             <button className="action__item--edit" disabled={!editingText.trim()}>Submit Edit</button>
                         </form>
-                      </label>
                     ) : (
                       <span className={completed ? "task__text strike" : "task__text"}>{task}</span>
                     )}
