@@ -1,4 +1,6 @@
 import { useContext, useMemo } from 'react';
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
 import TaskContext from '../../contexts/TaskContext'
 import Task from '../Task'
 
@@ -11,13 +13,17 @@ const TaskList = () => {
 
   console.log('render: TaskList');
 
-  return sortedTasks.map(({task, id, completed}) => (
-    <Task
-      key={id} 
-      task={task} 
-      id={id} 
-      completed={completed}
-    />))
+  return (<Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+    <List>
+    {sortedTasks.map(({task, id, completed}) => (
+      <Task
+        key={id} 
+        task={task} 
+        id={id} 
+        completed={completed}
+      />))}
+    </List>
+  </Box>)
 }
 
 

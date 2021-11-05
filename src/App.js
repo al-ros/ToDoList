@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./App.css";
+import "./App.scss";
 import TaskContext from "./contexts/TaskContext";
 import Header from "./components/Header";
 import TaskList from "./components/TaskList";
