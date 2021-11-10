@@ -1,6 +1,9 @@
-import "./Header.scss";
+// import "./Header.scss";
 import { generatePath } from "react-router";
 import { Link } from "react-router-dom";
+
+
+import { AppBar, CssBaseline, Button, Grid, Toolbar, Typography } from "@mui/material";
 
 const Header = () => {
   const username = "sasha";
@@ -8,36 +11,56 @@ const Header = () => {
   const profileLink = generatePath('/profile/:username/:userId', {username, userId});
   
   return (
-    <div className="header__box box">
-      <h1 className="box__text">TO DO LIST</h1>
-      <ul className="nav">
-        <li className="nav__button">
-          <Link to="/" className="nav__button--item">
-            Home
-          </Link>
-        </li>
-        <li className="nav__button">
-          <Link to="/stat" className="nav__button--item">
-            Stat
-          </Link>
-        </li>
-        <li className="nav__button">
-          <Link to="/stat/subpage" className="nav__button--item">
-            Stat Subpage
-          </Link>
-        </li>
-        <li className="nav__button">
-          <Link to="/admin" className="nav__button--item">
-            Admin
-          </Link>
-        </li>
-        <li className="nav__button">
-          <Link to={profileLink} className="nav__button--item">
-            Profile
-          </Link>
-        </li>
-      </ul>
-    </div>
+    <>
+      <CssBaseline />
+      <AppBar position='relative'>
+          <Toolbar>
+              <Typography variant="h6">
+                  TO DO LIST
+              </Typography>
+          </Toolbar>
+      </AppBar>
+
+      <div>
+        <Grid container spacing={2} justify="center">
+          <Grid item>
+            <Link to="/" style={{textDecoration: "none"}}>
+              <Button variant="contained" color="primary">
+                  Home
+              </Button>
+            </Link>
+          </Grid>
+          <Grid item>
+            <Link to="/stat" style={{textDecoration: "none"}}>
+              <Button variant="contained" color="primary">
+                  Stat
+              </Button>
+            </Link>
+          </Grid>
+          <Grid item>
+            <Link to="/stat/subpage" style={{textDecoration: "none"}}>
+              <Button variant="contained" color="primary">
+                  Stat subpage
+              </Button>
+            </Link>
+          </Grid>
+          <Grid item>
+            <Link to="/admin" style={{textDecoration: "none"}}>
+              <Button variant="contained" color="primary">
+                  Admin
+              </Button>
+            </Link>
+          </Grid>
+          <Grid item>
+            <Link to={profileLink} style={{textDecoration: "none"}}>
+              <Button variant="contained" color="primary">
+                  Profile
+              </Button>
+            </Link>
+          </Grid>
+        </Grid>
+      </div>
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
+
 import { useState, useEffect } from "react";
-import "./App.scss";
+// import "./App.scss";
 import TaskContext from "./contexts/TaskContext";
 import Header from "./components/Header";
 import TaskList from "./components/TaskList";
@@ -9,6 +10,8 @@ import Admin from './components/Admin'
 import Profile from './components/Profile'
 import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
 
+
+import { Box, CssBaseline } from '@mui/material';
 const App = () => {
   const [tasks, setTasks] = useState(() => {
     const temp = localStorage.getItem("todos");
@@ -106,8 +109,14 @@ const App = () => {
   console.log("render: App");
 
   return (
-    <div className="App">
-      <div className="App__container">
+    <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          minHeight="100vh"
+        >
+    <CssBaseline />
+    <div>
         <Router>
           <TaskContext.Provider
             value={{
@@ -155,8 +164,8 @@ const App = () => {
             </main>
           </TaskContext.Provider>
         </Router>
-      </div>
     </div>
+    </Box>
   );
 };
 

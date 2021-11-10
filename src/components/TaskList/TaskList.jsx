@@ -13,7 +13,7 @@ const TaskList = () => {
 
   console.log('render: TaskList');
 
-  return (<Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+  return (<Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', justifyContent: 'center', alignItems: 'center' }}>
     <List>
     {sortedTasks.map(({task, id, completed}) => (
       <Task

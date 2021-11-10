@@ -1,16 +1,18 @@
 import "./Task.scss"
 import { useState, useContext } from 'react'
+import Box from '@mui/material/Box';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Checkbox from '@mui/material/Checkbox';
-import ButtonGroup from '@mui/material/ButtonGroup';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import TaskContext from '../../contexts/TaskContext'
 import EditTask from '../EditTask'
+
+
 
 const Task = ({ task, id, completed }) => {
     const [taskEditing, setTaskEditing] = useState(false)
@@ -25,18 +27,22 @@ const Task = ({ task, id, completed }) => {
         setTaskEditing(true);
     }
 
-    return (
+    return (  
         <ListItem secondaryAction={
-            <>
-                <IconButton edge="end" aria-label="delete" onClick={handleClickEdit}>
-                    <EditIcon />
-                </IconButton>
-                <IconButton edge="end" aria-label="delete" onClick={() => deleteTask(id)}>
-                    <DeleteIcon />
-                </IconButton>
-            </>
+            <Box sx={{ width: '100%', bgcolor: 'background.paper', justifyContent: 'center', alignItems: 'center' }}>
+                <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+                    <IconButton edge="end" aria-label="delete" onClick={handleClickEdit}>
+                        <EditIcon />
+                    </IconButton>
+                </Box>
+                <Box sx={{ width: '100%', maxWidth: 1360, bgcolor: 'background.paper' }}>
+                    <IconButton edge="end" aria-label="delete" onClick={() => deleteTask(id)}>
+                        <DeleteIcon />
+                    </IconButton>
+                </Box>
+            </Box>
           }>
-            <ListItemButton onClick={() => !taskEditing && taskDone(id)} disableRipple={taskEditing}>
+            <ListItemButton onClick={() => !taskEditing && taskDone(id)} disableRipple={taskEditing} >
                 {
                 taskEditing
                     ? <EditTask task={task} onSubmit={handleEditSubmit} />
